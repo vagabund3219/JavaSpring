@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:object="${bookObj}" th:action="@{/edit/book/{id}/(id=${bookObj.id})}">
+  <h2>Форма добавления новой книги</h2>
+  <p th:if="${#fields.hasErrors('binding')}" th:errorclass="error" th:errors="*{binding}">Name Error</p><br>
+  <input th:field="*{binding}" type="text" id="binding" th:placeholder="переплет" th:value="${bookObj.binding}">
+
+  <p th:if="${#fields.hasErrors('book_name')}" th:errorclass="error" th:errors="*{book_name}">Name Error</p><br>
+  <input th:field="*{book_name}"type="text" id="book_name" placeholder="название книги" th:value="${bookObj.book_name}">
+
+  <p th:if="${#fields.hasErrors('publisher')}" th:errorclass="error" th:errors="*{publisher}">Name Error</p><br>
+  <input th:field="*{publisher}"type="text" id="publisher" placeholder="издатель" th:value="${bookObj.publisher}">
+
+  <p th:if="${#fields.hasErrors('publishedYear')}" th:errorclass="error" th:errors="*{publishedYear}">Name Error</p><br>
+  <input th:field="*{publishedYear}"type="text" id="publishedYear" placeholder="год публикации" th:value="${bookObj.publishedYear}">
+
+  <p th:if="${#fields.hasErrors('genre')}" th:errorclass="error" th:errors="*{genre}">Name Error</p><br>
+  <input th:field="*{genre}"type="text" id="genre" placeholder="жанр" th:value="${bookObj.genre}">
+
+  <p th:if="${#fields.hasErrors('authorId')}" th:errorclass="error" th:errors="*{authorId}">Name Error</p><br>
+  <select th:field="*{authorId}" name="chooseAuthor" id="author" th:value="${bookObj.authorId}">
+    <option th:each="el : ${authors}" th:text="${el.au_name}" th:value="${el.id}" ></option>
+  </select>
+  <button type="submit">Добавить</button>
+</form>
+</body>
+</html>
